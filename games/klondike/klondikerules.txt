@@ -1,0 +1,4 @@
+The linked game maps difficulty to the stock.
+Easy is Draw One with unlimited passes through the stock;
+Medium is Draw One limited to three passes; 
+Hard is Draw Three, also limited to three passes

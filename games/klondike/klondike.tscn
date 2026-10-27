@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dsrybx7gui874"]
+
+[ext_resource type="Script" uid="uid://bk32r3aks8t47" path="res://games/klondike/klondike.gd" id="1_eabkq"]
+[ext_resource type="PackedScene" uid="uid://bhxslajkj5s1c" path="res://games/resources/card.tscn" id="2_lohxu"]
+[ext_resource type="PackedScene" uid="uid://cknqvefh6oq1p" path="res://games/klondike/foundation.tscn" id="3_lq6k0"]
+
+[node name="Klondike" type="Node2D" unique_id=436898443]
+script = ExtResource("1_eabkq")
+card_scene = ExtResource("2_lohxu")
+
+[node name="Base" type="Node2D" parent="." unique_id=617273306]
+
+[node name="ColorRect" type="ColorRect" parent="Base" unique_id=275508077]
+offset_left = 33.0
+offset_top = 10.0
+offset_right = 155.0
+offset_bottom = 180.8
+
+[node name="Foundations" type="Node2D" parent="Base" unique_id=1865162466]
+
+[node name="Foundation1" parent="Base/Foundations" unique_id=831622074 instance=ExtResource("3_lq6k0")]
+position = Vector2(556, 7)
+
+[node name="Foundation2" parent="Base/Foundations" unique_id=339471302 instance=ExtResource("3_lq6k0")]
+position = Vector2(695, 7)
+
+[node name="Foundation3" parent="Base/Foundations" unique_id=438659846 instance=ExtResource("3_lq6k0")]
+position = Vector2(832, 7)
+
+[node name="Foundation4" parent="Base/Foundations" unique_id=138400001 instance=ExtResource("3_lq6k0")]
+position = Vector2(982, 6)
+
+[node name="FieldStart" type="Marker2D" parent="." unique_id=1524367930]
+position = Vector2(38, 222)
+
+[node name="Board" type="Node2D" parent="." unique_id=395460207]
+
+[node name="Goals" type="Node2D" parent="." unique_id=1891491110]

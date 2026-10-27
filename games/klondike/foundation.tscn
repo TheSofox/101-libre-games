@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cknqvefh6oq1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gt56"]
+size = Vector2(122, 171)
+
+[node name="Foundation" type="Area2D" unique_id=339471302]
+
+[node name="Foundation1" type="ColorRect" parent="." unique_id=831622074]
+offset_right = 122.0
+offset_bottom = 170.8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2118239560]
+position = Vector2(61, 85.5)
+shape = SubResource("RectangleShape2D_7gt56")

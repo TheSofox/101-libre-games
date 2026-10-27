@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bhxslajkj5s1c"]
+
+[ext_resource type="Texture2D" uid="uid://cpiy47mwcjwkv" path="res://art/Public_domain_complete_playing_card_deck.svg" id="1_2gbra"]
+[ext_resource type="Script" uid="uid://bke3e2qc2r255" path="res://games/resources/card.gd" id="2_freov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gt56"]
+size = Vector2(120.999985, 172)
+
+[node name="Card" type="Area2D" unique_id=344985718]
+script = ExtResource("2_freov")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1791194901]
+position = Vector2(61.499992, 85)
+scale = Vector2(1.0000001, 1)
+shape = SubResource("RectangleShape2D_7gt56")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=208923972]
+scale = Vector2(0.16266666, 0.16266665)
+texture = ExtResource("1_2gbra")
+centered = false
+hframes = 9
+vframes = 6
+
+[connection signal="mouse_entered" from="." to="Sprite" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="." to="Sprite" method="_on_area_2d_mouse_exited"]

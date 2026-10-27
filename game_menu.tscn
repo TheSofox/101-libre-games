@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cyun35kmuk2aj"]
+
+[ext_resource type="Script" uid="uid://br144hv4k2tyb" path="res://game_menu.gd" id="1_jowre"]
+
+[node name="Node2D" type="Node2D" unique_id=1702009834]
+script = ExtResource("1_jowre")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=664551493]
+offset_left = 8.0
+offset_top = -2.0
+offset_right = 451.0
+offset_bottom = 302.0
+
+[node name="Button2" type="Button" parent="GridContainer" unique_id=1243636246]
+layout_mode = 2
+text = "Minesweeper"
+
+[node name="Button" type="Button" parent="GridContainer" unique_id=1577326804]
+layout_mode = 2
+text = "Klondike Solitaire"
+
+[node name="Button3" type="Button" parent="GridContainer" unique_id=1559690238]
+layout_mode = 2
+text = "Nonograms"
+
+[node name="Button4" type="Button" parent="GridContainer" unique_id=1130480736]
+layout_mode = 2
+text = "Nonograms"
