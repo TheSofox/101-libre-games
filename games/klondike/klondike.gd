@@ -115,9 +115,9 @@ func get_stack_below(card: Card):
 	return stack
 
 func get_card_in_front(card1, card2):
-	if card1 == null:
+	if card1 == null or is_foundation(card1):
 		return card2
-	if card2 == null:
+	if card2 == null or is_foundation(card2):
 		return card1
 	var col = get_col(card1)
 	if col != get_col(card2):
@@ -142,7 +142,7 @@ func stack_released(stack: Array):
 	var cards = []
 	var foundations = []
 	for area in card.get_overlapping():
-		if area.get_parent().name =="Foundations":
+		if is_foundation(area):
 			foundations.append(area)
 		if area is Card and is_at_bottom(area) and card.can_go_over(area):
 			cards.append(area)
@@ -155,10 +155,23 @@ func stack_released(stack: Array):
 			move_card_over(c, prev_card)
 			prev_card = c
 	else:
-		if len(stack) == 1 and stack.front().get_value()==0:
-			var foundation = get_closest(stack.front(), foundations)
-			move_card_foundation(stack.front(), foundation)
-	
+		if len(stack) == 1:
+			for foundation in foundations:
+				if card_match_foundation(card, foundation):
+					#var foundation = get_closest(stack.front(), foundations)
+					move_card_foundation(stack.front(), foundation)
+					break
+
+func card_match_foundation(card: Card, foundation):
+	var foundation_index = foundation.get_index()
+	var data_foundation: Array = board_foundation[foundation_index]
+	if len(data_foundation) == 0 and card.get_value()==0:
+		return true
+	if data_foundation.back().get_value()+1 == card.get_value() and data_foundation.back().get_suit() == card.get_suit():
+			return true
+	return false
+		
+
 func get_closest(target, list):
 	var max_distance = INF
 	var result
@@ -190,7 +203,7 @@ func misc(card, overlaps):
 	card.set_base_position(landing_card.position + Vector2.DOWN*40)
 			
 	print(places)
-
+	
 func place_card(index, x, y):
 	var card = make_card(index)
 	card.position = Vector2(x, y);
@@ -213,6 +226,9 @@ func _process(delta: float) -> void:
 	
 func bring_card_to_front(card):
 	card.get_parent().move_child(card, card.get_parent().get_child_count())
+	
+func is_foundation(item):
+	return item.get_parent().name == "Foundations"
 	
 func get_cards_under_mouse():
 	var space_state = get_world_2d().direct_space_state
