@@ -30,11 +30,11 @@ func get_card_index():
 
 
 	
-func get_overlapping_cards():
-	var cards =[]
+func get_overlapping():
+	var areas =[]
 	for area in get_overlapping_areas():
-		cards.append(area)
-	return cards
+		areas.append(area)
+	return areas
 
 
 func can_go_over(card):
