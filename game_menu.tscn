@@ -25,4 +25,4 @@ text = "Nonograms"
 
 [node name="Button4" type="Button" parent="GridContainer" unique_id=1130480736]
 layout_mode = 2
-text = "Nonograms"
+text = "Lights Out"

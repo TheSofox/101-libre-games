@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cknqvefh6oq1p"]
+
+[ext_resource type="Script" uid="uid://bp6eck03c62p3" path="res://games/klondike/card_base.gd" id="1_b1tnx"]
+[ext_resource type="Texture2D" uid="uid://bscd0lmbv4vfd" path="res://art/CardBases.png" id="1_h2dbf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7gt56"]
+size = Vector2(122, 171)
+
+[node name="CardBase" type="Area2D" unique_id=339471302 groups=["foundation"]]
+script = ExtResource("1_b1tnx")
+
+[node name="Foundation1" type="ColorRect" parent="." unique_id=831622074]
+visible = false
+offset_right = 122.0
+offset_bottom = 170.8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2118239560]
+position = Vector2(61, 85.5)
+shape = SubResource("RectangleShape2D_7gt56")
+
+[node name="Image" type="Sprite2D" parent="." unique_id=14614319]
+scale = Vector2(0.24399999, 0.24399999)
+texture = ExtResource("1_h2dbf")
+centered = false
+hframes = 4
