@@ -88,7 +88,10 @@ func move_card_over(move_card, landing_card):
 
 func move_card_foundation(card:Card, foundation:Node2D):
 	var foundation_index = foundation.get_index()
-	board_foundation[foundation_index].append(card)
+	move_card_data_foundation(card, board_foundation[foundation_index])
+	
+func move_card_data_foundation(card:Card, foundation:Array):
+	foundation.append(card)
 	remove_from_field(card)
 	refresh_board()
 	
@@ -128,7 +131,7 @@ func _input(event: InputEvent) -> void:
 				chosen_card = card
 		var stack = get_stack_below(chosen_card)
 		
-		if event.double_click and len(stack)==1 and add_card_to_foundation(stack.front):
+		if event.double_click and len(stack)==1 and add_card_to_foundation(stack.front()):
 			pass
 		elif not stack.is_empty():
 			held_cards = stack
@@ -146,7 +149,10 @@ func _input(event: InputEvent) -> void:
 			card.position +=event.relative
 
 func add_card_to_foundation(card:Card):
-	pass
+	for foundation in board_foundation:
+		if can_card_land_on_foundation(card, foundation):
+			move_card_data_foundation(card, foundation)
+			return
 
 func draw_cards():
 	if len(draw_pile)>0:
@@ -235,18 +241,20 @@ func stack_released(stack: Array):
 				move_card_over(c, prev_card)
 				prev_card = c
 
-
+func can_card_land_on_foundation(card: Card, foundation):
+	if len(foundation) == 0 and card.get_value()==0:
+		return true
+	if len(foundation)==0:
+		return false
+	if foundation.back().get_value()+1 == card.get_value() and foundation.back().get_suit() == card.get_suit():
+			return true
+	return false
 
 func card_match_foundation(card: Card, foundation):
 	var foundation_index = foundation.get_index()
 	var data_foundation: Array = board_foundation[foundation_index]
-	if len(data_foundation) == 0 and card.get_value()==0:
-		return true
-	if len(data_foundation)==0:
-		return false
-	if data_foundation.back().get_value()+1 == card.get_value() and data_foundation.back().get_suit() == card.get_suit():
-			return true
-	return false
+	return can_card_land_on_foundation(card, data_foundation)
+
 		
 
 func get_closest(target:Node2D, list:Array):
